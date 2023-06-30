@@ -8,7 +8,7 @@ jobs:
         uses: sayyid5416/pyinstaller@v1
         with:
           python_ver: '3.11'
-          spec: 'src/elfreader/__main__.py'
+          spec: 'elfreader.spec'
           requirements: 'requirements/run.txt'
           upload_exe_with_name: 'elfreader-win.exe'
           options: --onefile, --name "elfreader", --console,
@@ -19,7 +19,7 @@ jobs:
         uses: sayyid5416/pyinstaller@v1
         with:
           python_ver: '3.11'
-          spec: 'src/elfreader/__main__.py'
+          spec: 'elfreader.spec'
           requirements: 'requirements/run.txt'
           upload_exe_with_name: 'elfreader-macos'
           options: --onefile, --name "elfreader", --console,
@@ -30,7 +30,7 @@ jobs:
         uses: sayyid5416/pyinstaller@v1
         with:
           python_ver: '3.11'
-          spec: 'src/elfreader/__main__.py'
+          spec: 'elfreader.spec'
           requirements: 'requirements/run.txt'
           upload_exe_with_name: 'elfreader-linux'
           options: --onefile, --name "elfreader", --console,
