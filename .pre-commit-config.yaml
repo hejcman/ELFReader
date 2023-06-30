@@ -1,0 +1,66 @@
+exclude: docs|tests
+
+repos:
+
+  # Basic formatting fixes
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-executables-have-shebangs
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  # Remove unused imports
+  - repo: https://github.com/hadialqattan/pycln
+    rev: v2.1.1
+    hooks:
+      - id: pycln
+
+  # Run Shellcheck
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.8.0.4
+    hooks:
+    - id: shellcheck
+
+  # Formatting with Black
+  - repo: https://github.com/psf/black
+    rev: 22.12.0
+    hooks:
+      - id: black
+        files: '.*'
+
+  # Linting with Ruff
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: 'v0.0.246'
+    hooks:
+      - id: ruff
+        args: [
+          --fix,
+          src/elfReader
+        ]
+
+  # Linting with PyLint.
+  - repo: https://github.com/PyCQA/pylint
+    rev: v2.15.4
+    hooks:
+    - id: pylint
+      args: [
+        --disable=import-error,
+        --output-format=colorized,
+        --max-line-length=88,
+        --max-args=9,
+      ]
+
+  # MyPy for checking static typing
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.0.0
+    hooks:
+    - id: mypy
+      args: [
+        --non-interactive,
+        --install-types,
+        --config-file=pyproject.toml,
+        src/elfreader
+      ]
+      pass_filenames: false
+      verbose: true
